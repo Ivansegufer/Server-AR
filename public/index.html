@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script> -->
+    <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>AR-FRAME</title>
+</head>
+<body style="margin: 0; overflow: hidden;">
+    <!--"detectionMode: mono_and_matrix; matrixCodeType: 3x3_HAMMING63;"-->
+    <a-scene 
+        embedded 
+        vr-mode-ui="enabled: false;" 
+        arjs="sourceType: webcam; 
+            debugUIEnabled: false;
+            detectionMode: mono_and_matrix; 
+            matrixCodeType: 3x3_HAMMING63;"
+        renderer="logarithmicDepthBuffer: true"
+        gesture-detector
+    >
+        <a-assets>
+            <!-- <a-asset-item id="beedrill" src="./beedrill/scene.gltf"></a-asset-item> -->
+            <img id="earth" src="textures/earth.jpg">
+            <img id="sun" src="textures/sun.jpg">
+            <img id="moon" src="textures/moon.jpg">
+        </a-assets>
+
+        <!-- <a-entity
+            position="50 150 -10"
+            gltf-model="#beedrill"
+            scale="0.05 0.05 0.05"
+            animation-mixer
+            gps-entity-place="latitude: -1.053008; longitude: -79.482259;"
+        >
+        </a-entity> -->
+
+        <!-- <a-nft
+            type="nft"
+            url="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/fcor/arjs-edteam/master/assets/logo/logo"
+            smooth="true" 
+            smoothCount="10"
+            smoothTolerance=".01"
+            smoothThreshold="5"
+        >
+            <a-entity 
+                position="50 150 -20" 
+                gltf-model="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/fcor/arjs-edteam/master/assets/arjs-logo.glb" 
+                scale="50 50 50" 
+                rotation="0 0 0"
+            >
+            </a-entity>
+        </a-nft> -->
+
+        <a-marker 
+            type="barcode" 
+            value="0" 
+            smooth="true" 
+            smoothCount="10"
+            smoothTolerance=".01"
+            smoothThreshold="5">
+            <!-- <a-entity 
+                listen-to-scale
+                position="0 1 -1" 
+                animation="property: rotation; from: 0 0 0; to: 0 360 0; loop: true; dur: 10000; easing: linear; dir: alternate;"
+                gltf-model="#earth" 
+                src="#earth"
+                scale="0.05 0.05 0.05" 
+                rotation="0 0 0"
+                gesture-handler="minScale: 0.75; maxScale: 2"
+            >
+            </a-entity> -->
+            <a-sphere 
+                position="0 1 -1" 
+                src="#earth"
+                scale="0.75 0.75 0.75"
+                animation="property: rotation; from: 0 0 0; to: 0 360 0; loop: true; dur: 40000; easing: linear;"
+            ></a-sphere>
+            <a-entity position="0 0 0" animation="property: rotation; from: 0 0 0; to: 0 360 0; loop: true; dur: 10000; easing: linear;">
+                <a-sphere 
+                    position="1.3 2.3 0" 
+                    src="#moon"
+                    scale="0.25 0.25 0.25"
+                ></a-sphere>
+            </a-entity>
+        </a-marker>
+        <a-marker
+        type="barcode" 
+        value="1" 
+        smooth="true" 
+        smoothCount="10"
+        smoothTolerance=".01"
+        smoothThreshold="5">
+            <a-sphere 
+                position="0 1 -1" 
+                src="#sun"
+                scale="0.75 0.75 0.75"
+                animation="property: rotation; from: 0 0 0; to: 0 360 0; loop: true; dur: 10000; easing: linear;"
+            ></a-sphere>
+        </a-marker>
+
+        <a-entity camera></a-entity>
+        <!-- <a-camera gps-camera rotation-reader></a-camera> -->
+    </a-scene>
+    <!-- <div class="controls">
+        <button id="up">Up</button>
+        <button id="down">Down</button>
+    </div> -->
+    <script src="index.js"></script>
+</body>
+</html>
